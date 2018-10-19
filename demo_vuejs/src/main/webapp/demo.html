@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vuejs-2.5.16.js"></script>
+</head>
+<body>
+<div id="app">
+    {{message1+123}}<br>
+    {{message2}}<br>
+    <button v-on:click="fun('hi')">change</button>
+    <input type="text" v-on:keydown="fun2($event)">
+
+</div>
+
+</body>
+<script>
+    new Vue({
+        el:"#app",//表示当前Vue对象接管了div区域
+        data:{
+            message1:10,
+            message2:"hello"
+        },
+        methods:{
+            fun:function (msg) {
+                this.message2=msg;
+            },
+            fun2:function (e) {
+                //1.捕获keyCode 判断它是否是0-9  需要使用event对象
+                var keyCode = e.keyCode;
+                if(!(keyCode>=49&&keyCode<=57)){
+                    //阻止默认行为执行
+                    e.preventDefault();
+                }
+            }
+        }
+    });
+</script>
+</html>
